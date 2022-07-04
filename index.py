@@ -3,7 +3,7 @@ import flask
 import requests
 
 # get request
-PASSWORD = '114c1639ef95c33ef3e253fa8392c3a889'
+PASSWORD = 'ACCESS_API_JENKINS_TOKEN_GOES_HERE'
 app = flask.Flask(__name__) 
 
 def trigger(JOB_URL, BUILD_ID, PROCEED): #Yes or No
