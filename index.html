@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <p>Jenkins CICD pipeline is paused and waiting for your approval to resume.</p>
+    <p>Please approve/reject the deployment as per the your review within 1 hour.</p>
+
+    <button onclick="approveDeployment()">Approve</button>
+    <button onclick="rejectDeployment()">Reject</button>
+
+    <p id="approve"></p>
+    <script>
+      function approveDeployment() {
+        // WARNING: For POST requests, body is set to null by browsers.
+        // XHR Get Request to Flask server to approve the deployment.
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "http://localhost:5000/approve");
+        // add headers in get request for authentication.
+        xhr.setRequestHeader(
+          "Authorization",
+          "Basic c2h1YmhhbWdhaWt3YWQ6MTFlOTY5NzcwZWNjZWVlNWU5NWY0ZGE3Njk1Y2MzMGFjNw=="
+        );
+        // add
+        xhr.send(null);
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            document.getElementById("approve").innerHTML = xhr.responseText;
+          }
+        };
+      }
+    </script>
+
+    <p id="reject"></p>
+    <script>
+      function rejectDeployment() {
+        // WARNING: For POST requests, body is set to null by browsers.
+        var data = new FormData();
+
+        var xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+
+        xhr.addEventListener("readystatechange", function () {
+          if (this.readyState === 4) {
+            console.log(this.responseText);
+          }
+        });
+
+        xhr.open("POST", "$JOB_URL/input/Approval/abort");
+        xhr.setRequestHeader(
+          "Authorization",
+          "Basic c2h1YmhhbWdhaWt3YWQ6MTFlOTY5NzcwZWNjZWVlNWU5NWY0ZGE3Njk1Y2MzMGFjNw=="
+        );
+        xhr.send(data);
+      }
+    </script>
+  </body>
+</html>

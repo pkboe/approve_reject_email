@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <p>Jenkins CICD pipeline is paused and waiting for your approval to resume.</p>
+    <p>Please approve/reject the deployment as per the your review within 1 hour.</p>
+
+    <div>
+      <a href="http://localhost:5000/approve?JOB_URL=$JOB_URL&BUILD_ID=$BUILD_ID">
+        <button onclick="approveDeployment()">Approve</button>
+      </a>
+      <a href="http://localhost:5000/reject?JOB_URL=$JOB_URL&BUILD_ID=$BUILD_ID">
+        <button onclick="rejectDeployment()">Reject</button>
+      </a>
+    </div>
+
+    <!-- button with href -->
+  </body>
+</html>
